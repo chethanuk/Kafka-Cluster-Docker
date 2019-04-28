@@ -14,6 +14,10 @@ Set advertised.listeners=PLAINTEXT://PUBLIC:9092
 ```
 docker-compose up -d
 ```
+or build the connect from Dockerfile
+```
+docker-compose -f docker-compose-build.yml up -d -build
+```
 
 ### To test just Kafka with zookeeper:
 `docker-compose -f compose.yml up -d -build`
