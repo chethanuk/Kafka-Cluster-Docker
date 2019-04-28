@@ -48,7 +48,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
   connect:
-    image: chethanuk/kafka-connect-datagen:5.21
+    image: chethanuk/kafka-connect:5.21
     # build:
     #   context: .
     #   dockerfile: Dockerfile

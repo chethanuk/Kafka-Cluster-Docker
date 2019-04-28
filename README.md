@@ -17,3 +17,11 @@ docker-compose up -d
 
 ### To test just Kafka with zookeeper:
 `docker-compose -f compose.yml up -d -build`
+
+
+### Requirements
+
+1. Install Docker: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+    To verify run: `docker --version`
+2. Install Docker-Compose: https://docs.docker.com/compose/install/ 
+    To verify run: `docker-compose --version`
