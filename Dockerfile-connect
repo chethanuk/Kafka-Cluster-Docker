@@ -1,0 +1,90 @@
+#
+# Copyright 2018 Confluent Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+FROM confluentinc/cp-kafka-connect:5.2.1
+
+ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
+
+RUN cd /usr/share/java
+# Installing all into /usr/share/java  --component-dir /usr/share/java
+
+# Sources
+confluent-hub install --no-prompt debezium/debezium-connector-mysql:latest --component-dir /usr/share/java
+confluent-hub install --no-prompt debezium/debezium-connector-postgresql:latest --component-dir /usr/share/java
+confluent-hub install --no-prompt debezium/debezium-connector-mongodb:0.9.5 --component-dir /usr/share/java
+confluent-hub install --no-prompt debezium/debezium-connector-sqlserver:0.9.5 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-ibmmq:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-activemq:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-salesforce:1.1.2 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-replicator:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-jms:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-rabbitmq:1.0.0-preview --component-dir /usr/share/java
+confluent-hub install --no-prompt microsoft/kafka-connect-iothub:0.6 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-datagen:0.1.3 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-kinesis:1.1.3 --component-dir /usr/share/java
+confluent-hub install --no-prompt jcustenborder/kafka-connect-twitter:0.2.32 --component-dir /usr/share/java
+confluent-hub install --no-prompt cjmatta/kafka-connect-irc:5.0.0 --component-dir /usr/share/java
+confluent-hub install --no-prompt jcustenborder/kafka-connect-transform-common:0.1.0.27 --component-dir /usr/share/java
+
+
+# Sinks
+confluent-hub install --no-prompt confluentinc/kafka-connect-maprdb:1.0.0-preview --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-mqtt:1.2.2-preview --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-s3:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-hdfs:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-cassandra:1.1.3 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-vertica:1.0.0-preview --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-gcs:5.0.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt confluentinc/kafka-connect-influxdb:1.0.0-preview --component-dir /usr/share/java
+confluent-hub install --no-prompt microsoft/kafka-connect-iothub:0.6 --component-dir /usr/share/java
+confluent-hub install --no-prompt nishutayal/kafka-connect-hbase:1.0.0 --component-dir /usr/share/java
+confluent-hub install --no-prompt hpgrahsl/kafka-connect-mongodb:1.3.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt jcustenborder/kafka-connect-solr:0.1.27 --component-dir /usr/share/java
+confluent-hub install --no-prompt jcustenborder/kafka-connect-memcached:0.1.0.9 --component-dir /usr/share/java
+confluent-hub install --no-prompt jcustenborder/kafka-connect-redis:0.0.2.7 --component-dir /usr/share/java
+confluent-hub install --no-prompt jcustenborder/kafka-connect-simulator:0.1.119 --component-dir /usr/share/java
+confluent-hub install --no-prompt bkatwal/bkatwal-kafka-connect-solr-sink:2.0 --component-dir /usr/share/java
+confluent-hub install --no-prompt fbascheper/kafka-connect-telegram:0.2.0 --component-dir /usr/share/java
+confluent-hub install --no-prompt jaredpetersen/kafka-connect-arangodb:1.0.4 --component-dir /usr/share/java
+confluent-hub install --no-prompt wepay/kafka-connect-bigquery:1.1.0 --component-dir /usr/share/java
+confluent-hub install --no-prompt thomaskwscott/kafka-connect-http:5.2.1 --component-dir /usr/share/java
+confluent-hub install --no-prompt thomaskwscott/kafka-connect-shell-sink:5.1.0 --component-dir /usr/share/java
+confluent-hub install --no-prompt neo4j/kafka-connect-neo4j:1.0.0 --component-dir /usr/share/java
+confluent-hub install --no-prompt dhananjaypatkar/kafka-connect-phoenix:0.1 --component-dir /usr/share/java
+
+
+# RUN confluent-hub install --no-prompt confluentinc/kafka-connect-datagen:latest --component-dir /usr/share/java
+
+RUN cd /usr/share/java && mkdir kafka-connect-cassandra && cd kafka-connect-cassandra && \
+ wget https://github.com/Landoop/stream-reactor/releases/download/1.2.1/kafka-connect-cassandra-1.2.1-2.1.0-all.tar.gz && \ 
+ tar -xvzf kafka-connect-cassandra-1.2.1-2.1.0-all.tar.gz && \
+ rm -f kafka-connect-cassandra-1.2.1-2.1.0-all.tar.gz
+
+RUN cd /usr/share/java && mkdir kafka-connect-hbase-1.2.1 && cd kafka-connect-hbase-1.2.1 && \
+ wget https://github.com/Landoop/stream-reactor/releases/download/1.2.1/kafka-connect-hbase-1.2.1-2.1.0-all.tar.gz && \ 
+ tar -xvzf kafka-connect-hbase-1.2.1-2.1.0-all.tar.gz && \
+ rm -f kafka-connect-hbase-1.2.1-2.1.0-all.tar.gz
+ 
+RUN cd /usr/share/java && mkdir kafka-connect-hive-1.2.1 && cd kafka-connect-hive-1.2.1 && \
+ wget https://github.com/Landoop/stream-reactor/releases/download/1.2.1/kafka-connect-hive-1.2.1-2.1.0-all.tar.gz && \ 
+ tar -xvzf kafka-connect-hive-1.2.1-2.1.0-all.tar.gz && \
+ rm -f kafka-connect-hive-1.2.1-2.1.0-all.tar.gz
+
+RUN cd /usr/share/java && mkdir kafka-connect-influxdb-1.2.1 && cd kafka-connect-influxdb-1.2.1 && \
+ wget https://github.com/Landoop/stream-reactor/releases/download/1.2.1/kafka-connect-influxdb-1.2.1-2.1.0-all.tar.gz && \ 
+ tar -xvzf kafka-connect-influxdb-1.2.1-2.1.0-all.tar.gz && \
+ rm -f kafka-connect-influxdb-1.2.1-2.1.0-all.tar.gz
