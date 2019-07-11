@@ -9,6 +9,15 @@ If you want to read data from outside the docker, then change the following:
 
 Set advertised.listeners=PLAINTEXT://PUBLIC:9092
 
+# Build Kafka connect 
+
+Install connectors to path `/usr/share/confluent-hub-components`
+
+Build the container using:
+```
+docker build -t chethanuk/kafka-connect:5.22 .
+```
+
 # RUN
 
 ```

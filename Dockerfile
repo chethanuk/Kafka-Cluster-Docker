@@ -59,7 +59,7 @@ RUN confluent-hub install --no-prompt confluentinc/kafka-connect-kinesis:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-twitter:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-redis:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-spooldir:latest
-RUN confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
+# RUN confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
 
 # Misc
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-syslog:latest
@@ -75,6 +75,12 @@ RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-transform-xml:
 RUN confluent-hub install --no-prompt blueapron/kafka-connect-protobuf-converter:latest
 RUN confluent-hub install --no-prompt thomaskwscott/kafka-connect-shell-sink:latest
 RUN confluent-hub install --no-prompt opencredo/kafka-connect-venafi:latest
+
+
+RUN cd /usr/share/confluent-hub-components && mkdir mongodb-kafka-connect-offical && cd mongodb-kafka-connect-offical && \
+ wget https://github.com/mongodb/mongo-kafka/releases/download/r0.1/kafka-connect-mongodb-0.1.zip && \
+ tar -xvzf kafka-connect-mongodb-0.1.zip && \
+ rm -f kafka-connect-mongodb-0.1.zip
 
 RUN cd /usr/share/confluent-hub-components && mkdir kafka-connect-cassandra && cd kafka-connect-cassandra && \
  wget https://github.com/Landoop/stream-reactor/releases/download/1.2.1/kafka-connect-cassandra-1.2.1-2.1.0-all.tar.gz && \ 
