@@ -76,10 +76,15 @@ RUN confluent-hub install --no-prompt blueapron/kafka-connect-protobuf-converter
 RUN confluent-hub install --no-prompt thomaskwscott/kafka-connect-shell-sink:latest
 RUN confluent-hub install --no-prompt opencredo/kafka-connect-venafi:latest
 
-
-RUN cd /usr/share/confluent-hub-components && mkdir mongodb-kafka-connect-offical && cd mongodb-kafka-connect-offical && \
+RUN  apt-get update -y && \
+     apt-get upgrade -y && \
+     apt-get dist-upgrade -y && \
+     apt-get -y autoremove && \
+     apt-get clean
+RUN apt install -y unzip
+RUN cd /usr/share/confluent-hub-components && mkdir -p mongodb-kafka-connect-offical && cd mongodb-kafka-connect-offical && \
  wget https://github.com/mongodb/mongo-kafka/releases/download/r0.1/kafka-connect-mongodb-0.1.zip && \
- tar -xvzf kafka-connect-mongodb-0.1.zip && \
+ unzip kafka-connect-mongodb-0.1.zip && \
  rm -f kafka-connect-mongodb-0.1.zip
 
 RUN cd /usr/share/confluent-hub-components && mkdir kafka-connect-cassandra && cd kafka-connect-cassandra && \
