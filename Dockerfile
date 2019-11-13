@@ -34,7 +34,7 @@ RUN confluent-hub install --no-prompt confluentinc/kafka-connect-gcs:latest
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-influxdb:latest
 RUN confluent-hub install --no-prompt microsoft/kafka-connect-iothub:latest
 RUN confluent-hub install --no-prompt nishutayal/kafka-connect-hbase:latest
-RUN confluent-hub install --no-prompt hpgrahsl/kafka-connect-mongodb:latest
+# RUN confluent-hub install --no-prompt hpgrahsl/kafka-connect-mongodb:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-memcached:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-solr:latest
 RUN confluent-hub install --no-prompt jaredpetersen/kafka-connect-arangodb:latest
@@ -43,7 +43,7 @@ RUN confluent-hub install --no-prompt fbascheper/kafka-connect-telegram:latest
 RUN confluent-hub install --no-prompt neo4j/kafka-connect-neo4j:latest
 RUN confluent-hub install --no-prompt dhananjaypatkar/kafka-connect-phoenix:latest
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-http:latest
-RUN confluent-hub install --no-prompt thomaskwscott/kafka-connect-http:latest
+# RUN confluent-hub install --no-prompt thomaskwscott/kafka-connect-http:latest
 
 # Source Connector
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-activemq:latest
@@ -59,7 +59,7 @@ RUN confluent-hub install --no-prompt confluentinc/kafka-connect-kinesis:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-twitter:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-redis:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-spooldir:latest
-# RUN confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
+RUN confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
 
 # Misc
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-syslog:latest
