@@ -15,7 +15,7 @@ Install connectors to path `/usr/share/confluent-hub-components`
 
 Build the container using:
 ```
-docker build -t chethanuk/kafka-connect:5.22 .
+docker build -t chethanuk/kafka-connect:5.3.1 .
 ```
 
 # RUN
