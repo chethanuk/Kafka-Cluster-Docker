@@ -12,7 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-FROM confluentinc/cp-kafka-connect:5.3.1
+FROM confluentinc/cp-kafka-connect:5.4.0
 
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
 
@@ -82,10 +82,10 @@ RUN  apt-get update -y && \
      apt-get -y autoremove && \
      apt-get clean
 RUN apt install -y unzip
-RUN cd /usr/share/confluent-hub-components && mkdir -p mongodb-kafka-connect-offical && cd mongodb-kafka-connect-offical && \
- wget https://github.com/mongodb/mongo-kafka/releases/download/r0.1/kafka-connect-mongodb-0.1.zip && \
- unzip kafka-connect-mongodb-0.1.zip && \
- rm -f kafka-connect-mongodb-0.1.zip
+# RUN cd /usr/share/confluent-hub-components && mkdir -p mongodb-kafka-connect-offical && cd mongodb-kafka-connect-offical && \
+#  wget https://github.com/mongodb/mongo-kafka/releases/download/r0.1/kafka-connect-mongodb-0.1.zip && \
+#  unzip kafka-connect-mongodb-0.1.zip && \
+#  rm -f kafka-connect-mongodb-0.1.zip
 
 RUN cd /usr/share/confluent-hub-components && mkdir kafka-connect-cassandra && cd kafka-connect-cassandra && \
  wget https://github.com/Landoop/stream-reactor/releases/download/1.2.1/kafka-connect-cassandra-1.2.1-2.1.0-all.tar.gz && \ 
